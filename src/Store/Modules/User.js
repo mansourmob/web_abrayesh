@@ -17,13 +17,16 @@ const actions = {
     RegisterUser(context,RegisterData){
         Vue.http.post('v1/users/registration',RegisterData)
         .then(response =>{
-
-                alert("شد ");
-
-              
+            if(response.status == 200){
+                console.log(response);
+                alert("ثبت نام با موفقیت انجام شد")
+            }  
             
         }).then(data =>{
-            alert("ثبت نام با موفقیت انجام شد");
+            if(response.status == 400){
+                console.log(response);
+                alert("400")
+            } 
         })
     }
 };

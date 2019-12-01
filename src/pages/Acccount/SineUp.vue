@@ -35,10 +35,11 @@
 					<div class="tabbable-panel margin-tops4 ">
 <form action="#">
 			<div class="col-md-6">
-			
+			<span>{{$v}}</span>
 						<div class="input-group contact-input">
 						 <label class="my-label-style" for="cheese" >شماره</label>
-						  <input type="text" class="form-control " id="phone" v-model="phone" placeholder="">
+						  <input type="text" :class="{invalid:$v.phone.$error}" id="phone" v-model="phone" placeholder="" @input="$v.phone.$touch()">  
+						  <p style="color:red" v-if="!$v.phone.required">شماره تماس اشتباه است</p>
 						</div>
 						<div class="input-group contact-input">
 						<label class="my-label-style" for="cheese">رمز</label>
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+import {required} from 'vuelidate/lib/validators';
 export default {
  
     data(){
@@ -80,6 +82,11 @@ export default {
       };
       this.$store.dispatch("RegisterUser", register);
     }
+  },
+  validations:{
+	phone:{
+		required
+	}
   }
 
 
@@ -87,3 +94,10 @@ export default {
 }
 
 </script>
+<style>
+.invalid {
+  border: 1px solid red !important;
+  box-shadow: 0 0 5px red !important;
+  background-color: lightpink !important;
+}
+</style>
