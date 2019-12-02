@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 
 import App from './App.vue';
-import Vuelidate from 'Vuelidate';
+import Vuelidate from 'vuelidate';
 import {Routes} from './Routes';
 import {store} from './Store/Store';
 
